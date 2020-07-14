@@ -4,44 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
-    
-    
     <title>Quiz App</title>
 </head>
 <body>
-    <div class="timer">
-        <div id="timer">10:00</div>
-    </div>
-  
-    
     <div class="container">
-        
-        <div id="question-container" class="hide">
-        
-        <div class="question-area" id="questionArea">Question</div>
-        <div class="answer-buttons btn-grid" id="answer-buttons">
-            
-            <button class="btn">1</button>
-            <button class="btn">2</button>
-            <button class="btn">3</button>
-            <button class="btn">4</button>
-        </div>
-        </div>
+        <div id="timer" class="timer">05:00</div>
 
-        <div class="controls">
-            <button class="start-button btn" id="start-btn">Start</button>
-            <button class="final-button btn hide" id="final-btn">Final Answer</button>
-        </div>
+        <section>
+            <div id="questions" class="question-container hide">
+                <div id="question">Q1</div>
+            </div>
+            <div id="controls">
+                <div id="answerBtn" class="hide button-grid">
+                    <button class="choice" id="answerA">A</button>
+                    <button class="choice" id="answerB">B</button>
+                    <button class="choice" id="answerC">C</button>
+                    <button class="choice" id="answerD">D</button>
+                </div>
+                <button id="startBtn">Start Quiz</button>
+                
+            </div>
+            <div class="score hide">
+                <p>Well done! Insert your intials below to track your score</p>
+                <form id="score-form" method="POST">
+                  
+                  <input type="text" placeholder="Enter your Initials" name="score-text" id="score-text" />
+                </form>
+               
+                <ul id="score-list"></ul>
+              </div>
+        </section>
 
-        
-    
-    </div>
-
-
-    <script src="script.js"></script> 
+       
+    <script src="script.js"></script>
 </body>
 </html>
-
-<!-- Need an empty div element where question will go -->
-        <!-- Need answer buttons x4 -->
-        <!-- need a final answer button -->
