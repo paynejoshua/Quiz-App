@@ -9,6 +9,7 @@ const answerC = document.querySelector("#answerC");
 const answerD = document.querySelector("#answerD");
 const finalScore = document.querySelector(".score");
 const choices = document.querySelectorAll(".choice");
+let counter = document.querySelector("#counter")
 
 
 // reveal question and answer buttons when clicking start
@@ -28,6 +29,12 @@ function hide() {
   answerBtn.classList.add("hide");
 }
 
+// create conditional to check if answer correct is true if so then count towards score:
+let quizScore = 0;
+
+
+
+
 
 function question1() {
 
@@ -46,7 +53,48 @@ for (i = 0; i < newQuestion.length; i++ ) {
   answerC.addEventListener("click", question2);
   answerD.addEventListener("click", question2);
 
+  answerA.addEventListener("click", q1a1);
+  answerB.addEventListener("click", q1a2);
+  answerC.addEventListener("click", q1a2);
+  answerD.addEventListener("click", q1a4);
+
+  answerA.addEventListener("click", updateScore);
+  answerB.addEventListener("click", updateScore);
+  answerC.addEventListener("click", updateScore);
+  answerD.addEventListener("click", updateScore);
+
+  function q1a1() {
+    if (newQuestion[0].answer[0].correct == true){
+      quizScore++
+      console.log(quizScore)
+    } 
+  }
+  
+  function q1a2(){
+    if (newQuestion[0].answer[1].correct == true) {
+      quizScore++
+  
+    } else {
+    
+    }
+    
+  }
+  function q1a2(){
+    if (newQuestion[0].answer[2].correct == true) {
+      quizScore++
+  
+    } 
+  }
+  function q1a4(){
+    if (newQuestion[0].answer[3].correct == true) {
+      quizScore++
+  
+    } 
+  }
+
 }
+
+
 
 
 function question2() {
@@ -65,7 +113,39 @@ answerB.addEventListener("click", question3);
 answerC.addEventListener("click", question3);
 answerD.addEventListener("click", question3);
 
+answerA.addEventListener("click", q2a1);
+answerB.addEventListener("click", q2a2);
+answerC.addEventListener("click", q2a3);
+answerD.addEventListener("click", q2a4);
+
+function q2a1() {
+  if (newQuestion[1].answer[0].correct == true){
+    quizScore++
+
+  }
 }
+
+function q2a2(){
+  if (newQuestion[1].answer[1].correct == true) {
+    quizScore++
+
+  } 
+}
+function q2a3(){
+  if (newQuestion[1].answer[2].correct == true) {
+    quizScore++
+
+  } 
+}
+function q2a4(){
+  if (newQuestion[1].answer[3].correct == true) {
+    quizScore++
+
+  } 
+}
+
+}
+
 
 function question3() {
 
@@ -78,14 +158,52 @@ for (i = 0; i < newQuestion.length; i++ ) {
   answerD.textContent = newQuestion[2].answer[3].text;
 
 }
+answerA.addEventListener("click", q3a1);
+answerB.addEventListener("click", q3a2);
+answerC.addEventListener("click", q3a3);
+answerD.addEventListener("click", q3a4);
+
 answerA.addEventListener("click", renderScores);
 answerB.addEventListener("click", renderScores);
 answerC.addEventListener("click", renderScores);
 answerD.addEventListener("click", renderScores);
+
 answerA.addEventListener("click", hide);
 answerB.addEventListener("click", hide);
 answerC.addEventListener("click", hide);
 answerD.addEventListener("click", hide);
+
+function q3a1() {
+  if (newQuestion[2].answer[0].correct == true){
+    quizScore++
+
+  } else {
+    quizScore--
+    console.log(quizScore)}
+}
+
+function q3a2(){
+  if (newQuestion[2].answer[1].correct == true) {
+    quizScore++
+
+  } 
+}
+function q3a3(){
+  if (newQuestion[2].answer[2].correct == true) {
+    quizScore++
+
+  } 
+}
+function q3a4(){
+  if (newQuestion[2].answer[3].correct == true) {
+    quizScore++
+  } 
+}
+}
+
+
+function updateScore(){
+  counter.innerHTML = quizScore
 }
 
 
@@ -121,6 +239,9 @@ let newQuestion = [
   },
 ];
 
+
+
+
 // begin countdown timer here:
 
 function startTimer(duration, display) {
@@ -142,14 +263,18 @@ function startTimer(duration, display) {
 
 function beginCountdown() {
   var fiveMinutes = 60 * 5,
-      display = document.querySelector('#timer');
+      display = timer;
   startTimer(fiveMinutes, display);
 };
 
 
-// create conditional to check if answer correct is true if so then count towards score
 
-let quizScore = 0;
+
+
+
+// create conditional to check if answer correct is false if so then take 1 min off of clock:
+
+
 
 
 // Score Input Section:
@@ -183,7 +308,7 @@ function renderScores() {
 scoreForm.addEventListener("submit", function(event) {
   event.preventDefault();
 
-  var scoreText = scoreInput.value.trim();
+  var scoreText = scoreInput.value.trim() + "-------" + quizScore;
 
   // Return from function early if submitted scoreText is blank
   if (scoreText === "") {
